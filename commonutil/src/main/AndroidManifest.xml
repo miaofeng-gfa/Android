@@ -1,6 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cn.com.gfa.android.commonutil" >
-<uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
 <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
 <uses-permission android:name=" android.permission.READ_PHONE_STATE" />
 <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
