@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.jfrog.bintray'
-
+apply plugin: 'com.github.dcendents.android-maven'
 android {
     compileSdkVersion 27
 
@@ -30,14 +30,7 @@ android {
 }
 
 
-task makeJar(type: Jar) {
-    delete 'build/libs/commonutil.jar' //删除已经存在的jar包
-    from('build/intermediates/classes/release/')//从该目录下加载要打包的文件
-    into('build/libs/')//jar包的保存目录
-    include('classes.jar')//设置过滤，只打包classes文件
-    rename('classes.jar', 'commonutil.jar')//重命名，mylibrary.jar 根据自己的需求设置
-}
-makeJar.dependsOn(build)
+
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -48,6 +41,19 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
+/*
+
+task makeJar(type: Jar) {
+    delete 'build/libs/commonutil.jar' //删除已经存在的jar包
+    from('build/intermediates/classes/release/')//从该目录下加载要打包的文件
+    into('build/libs/')//jar包的保存目录
+    include('classes.jar')//设置过滤，只打包classes文件
+    rename('classes.jar', 'commonutil.jar')//重命名，mylibrary.jar 根据自己的需求设置
+}
+
+makeJar.dependsOn(build)
+*/
+
 
 /*ext {
 
@@ -74,3 +80,73 @@ dependencies {
     allLicenses = ["Apache-2.0"]
 }*/
 
+def siteUrl = 'https://github.com/miaofeng-gfa/' // 项目的主页 一般填你项目的github地址即可
+def gitUrl = 'https://github.com/miaofeng-gfa/Android-CommonUtils.git' // Git仓库的url 填你项目的git地址
+group = "cn.com.gfa.android" // Maven Group ID for the artifact，一般填你唯一的包名
+version = "1.0.1"//项目版本号
+
+install {
+    repositories.mavenInstaller {
+        // This generates POM.xml with proper parameters
+        pom {
+            project {
+                packaging 'aar'
+                // Add your description here
+                name 'my jcenter' //项目描述
+                url siteUrl
+                // Set your license
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'gfa'    //填写一些开发者的基本信息
+                        name 'miaofeng1990'
+                        email 'mufei@ec.com.cn'
+                    }
+                }
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+                }
+            }
+        }
+    }
+}
+/*task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}*/
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+    configurations = ['archives']
+    pkg {
+        repo = "gfa"         //仓库名字 repository
+        name = "CommonUtils"    //发布到JCenter上的项目名字 package
+        userOrg = 'ciecc15810481954'    //组织名称 organization
+        //上边三个可自由填写 但是一定要和bintray账号中我们添加的组织、仓库、包名对应上，否则肯定上传失败 一会我们去bintray中添加这几项。
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = ["Apache-2.0"]
+        publish = true
+    }
+}
