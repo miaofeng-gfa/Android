@@ -56,7 +56,7 @@ public final class LogUtil {
 
     private static final int FILE = 0x10;
     private static final int JSON = 0x20;
-    private static final int XML  = 0x30;
+    private static final int XML = 0x30;
 
     private static ExecutorService sExecutor;
     private static String          sDefaultDir;// log 默认存储目录
@@ -75,10 +75,10 @@ public final class LogUtil {
 
     private static final String FILE_SEP      = System.getProperty("file.separator");
     private static final String LINE_SEP      = System.getProperty("line.separator");
-    private static final String TOP_BORDER    = "╔═══════════════════════════════════════════════════════════════════════════════════════════════════";
-    private static final String SPLIT_BORDER  = "╟───────────────────────────────────────────────────────────────────────────────────────────────────";
-    private static final String LEFT_BORDER   = "║ ";
-    private static final String BOTTOM_BORDER = "╚═══════════════════════════════════════════════════════════════════════════════════════════════════";
+    private static final String TOP_BORDER    = "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^";
+    private static final String SPLIT_BORDER  = "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^";
+    private static final String LEFT_BORDER   = "";
+    private static final String BOTTOM_BORDER = "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^";
     private static final int    MAX_LEN       = 4000;
     private static final Format FORMAT        = new SimpleDateFormat("MM-dd HH:mm:ss.SSS ", Locale.getDefault());
     private static final String NULL          = "null";
@@ -86,7 +86,6 @@ public final class LogUtil {
     private static final Config CONFIG        = new Config();
 
     private LogUtil() {
-        throw new UnsupportedOperationException("u can't instantiate me...");
     }
 
     public static Config getConfig() {

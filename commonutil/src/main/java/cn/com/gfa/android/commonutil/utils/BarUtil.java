@@ -21,9 +21,7 @@ import java.lang.reflect.Method;
 
 public final class BarUtil {
 
-    ///////////////////////////////////////////////////////////////////////////
     // status bar
-    ///////////////////////////////////////////////////////////////////////////
 
     private static final int    DEFAULT_ALPHA = 112;
     private static final String TAG_COLOR     = "TAG_COLOR";

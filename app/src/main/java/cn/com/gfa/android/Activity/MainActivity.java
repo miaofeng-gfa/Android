@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import cn.com.gfa.android.R;
+import cn.com.gfa.android.commonutil.utils.ApplicationUtil;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -29,6 +30,10 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        ApplicationUtil.init(this.getApplication());
+        String name = ApplicationUtil.getApp().getPackageName();
+//        LogUtil.iTag(this.getClass().getSimpleName(),"获取类名");
     }
 
     @Override
