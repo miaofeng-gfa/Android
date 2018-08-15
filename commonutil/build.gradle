@@ -1,18 +1,20 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'com.github.dcendents.android-maven'
+apply from: "$rootDir/config.gradle"
+
 android {
-    compileSdkVersion 26
+    compileSdkVersion versions.compileSdkVersion
 
 
 
     defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion 22
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion versions.minSdkVersion
+        targetSdkVersion versions.targetSdkVersion
+        versionCode     versions.versionCode
+        versionName      versions.versionName
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner  tests.androidJUnitRunner
 
     }
 
@@ -24,8 +26,8 @@ android {
     }
 
     compileOptions {
-        targetCompatibility 1.8
-        sourceCompatibility 1.8
+        targetCompatibility versions.javaVersion
+        sourceCompatibility versions.javaVersion
     }
 }
 
@@ -35,11 +37,12 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support:design:26.1.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation libs.appcompatV7
+    implementation libs.design
+
+    testImplementation tests.junit
+    androidTestImplementation tests.runner
+    androidTestImplementation tests.espressoCore
 }
 
 task makeJar(type: Jar) {
