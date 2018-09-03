@@ -10,7 +10,9 @@ import android.view.MenuItem;
 import android.view.View;
 
 import cn.com.gfa.android.R;
+import cn.com.gfa.android.commonutil.utils.ActivityUtil;
 import cn.com.gfa.android.commonutil.utils.ApplicationUtil;
+import cn.com.gfa.android.commonutil.utils.LogUtil;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -34,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
         ApplicationUtil.init(this.getApplication());
         String name = ApplicationUtil.getApp().getPackageName();
 //        LogUtil.iTag(this.getClass().getSimpleName(),"获取类名");
+        Boolean isExists = ActivityUtil.isActivityExists(ApplicationUtil.getPackageName(this),this.getLocalClassName());
+        LogUtil.i("99999999999999=="+isExists);
     }
 
     @Override
@@ -52,7 +56,13 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+//            ActivityUtil.startActivity(BottomNavigActivity.class);
+            Bundle  b = new Bundle();
+            b.putString("key","value");
+//            ActivityUtil.startActivity(b,this,BottomNavigActivity.class);
+
             return true;
+
         }
 
         return super.onOptionsItemSelected(item);

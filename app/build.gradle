@@ -12,9 +12,10 @@ android {
         applicationId appIds.commonutilsId
         minSdkVersion versions.minSdkVersion
         targetSdkVersion versions.targetSdkVersion
-        versionCode     versions.versionCode
-        versionName      versions.versionName
+        versionCode versions.versionCode
+        versionName versions.versionName
         testInstrumentationRunner tests.androidJUnitRunner
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -34,9 +35,11 @@ dependencies {
     implementation libs.appcompatV7
     implementation libs.design
     implementation views.constraintLayout
-   
+
+    implementation 'com.android.support:design:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    implementation 'com.android.support:support-vector-drawable:26.1.0'
     testImplementation tests.junit
     androidTestImplementation tests.runner
     androidTestImplementation tests.espressoCore
 }
-
