@@ -25,7 +25,7 @@ public final class MemoryConstant {
     public static final int GB   = 1073741824;
 
 
-    public static final int TB   = 1073741824*1024;
+//    public static final int TB   = 1073741824*1024;
 
     @IntDef({BYTE, KB, MB, GB})
     @Retention(RetentionPolicy.SOURCE)
